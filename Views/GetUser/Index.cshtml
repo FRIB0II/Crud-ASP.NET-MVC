@@ -1,1 +1,18 @@
-﻿
+﻿@model UserModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+    <title>CRUD C#</title>
+</head>
+<body>
+    <div class="delete-user-confirm">
+        <h3>Informe o id do usuário que deseja buscar:</h3>
+        <form method="post" asp-controller="GetUser" asp-action="Index">
+            <label>Id do usuário</label>
+            <input type="submit"  placeholder="Id do usuário" required/>
+        </form>
+    </div>
+</body>
+</html>

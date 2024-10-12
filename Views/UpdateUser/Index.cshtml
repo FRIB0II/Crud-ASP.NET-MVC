@@ -1,1 +1,29 @@
-﻿
+﻿@model UserModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+    <title>CRUD C#</title>
+</head>
+<body>
+    <div class="add-user-form">
+        <h3>Atualização de dados do usuário</h3>
+        <form asp-controller="UpdateUser" asp-action="Index" method="post" class="form-itens">
+            <label>Nome</label>
+            <input type="text" maxlength="50" placeholder="@Model.UserName" required asp-for="UserName" />
+
+            <label>Sobrenome</label>
+            <input type="text" maxlength="50" placeholder="@Model.UserLastName" required asp-for="UserLastName" />
+
+            <label>Email</label>
+            <input type="email" maxlength="50" placeholder="@Model.UserEmail" required asp-for="UserEmail" />
+
+            <label>Senha</label>
+            <input type="password" maxlength="50" placeholder="@Model.UserPassword" required asp-for="UserPassword" />
+
+            <button type="submit">Atualizar usuário.</button>
+        </form>
+    </div>
+</body>
+</html>

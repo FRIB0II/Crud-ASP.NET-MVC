@@ -1,16 +1,52 @@
-﻿<!DOCTYPE html>
+﻿@model List<UserModel>
+
+<!DOCTYPE html>
 <html>
 <head>
     <link href="~/css/site.css" rel="stylesheet" />
     <title>CRUD C#</title>
 </head>
 <body>
-    <h3>Crud C#</h3>
-    <ul>
-        <li><a asp-controller="Add" asp-action="AddUser">Adicionar</a></li>
-        <li><a asp-controller="Get" asp-action="GetUser">Buscar</a></li>
-        <li><a asp-controller="Update" asp-action="UpdateUser">Atualizar</a></li>
-        <li><a asp-controller="Delete" asp-action="DeleteUser">Deletar</a></li>
-    </ul>
+    <h3>Crud ASP.NET </h3>
+    <div class="users">
+        <div id="add-button">
+            <a asp-controller="AddUser" asp-action="Index"><button>Adicionar</button></a>
+        </div>
+        @{
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Sobrenome</th>
+                        <th>Email</th>
+                        <th>Senha</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var user in Model)
+                        {
+                            <tr>
+                                <td class="user-id">@user.Id</td>
+                                <td>@user.UserName</td>
+                                <td>@user.UserLastName</td>
+                                <td>@user.UserEmail</td>
+                                <td>@user.UserPassword</td>
+                                <td>
+                                    <a asp-controller="UpdateUser" asp-action="Index" asp-route-id="@user.Id"><button id="update-button">Atualizar</button></a>
+                                </td>
+                                <td>
+                                    <a asp-controller="DeleteUser" asp-action="Index" asp-route-id="@user.Id"><button id="delete-button">Deletar</button></a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
 </body>
 </html>

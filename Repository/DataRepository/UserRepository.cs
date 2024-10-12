@@ -22,7 +22,7 @@ namespace Crud_MVC.Repository.DataRepository
 
         public UserModel GetUser(int id)
         {
-           UserModel UserSearched = _dbContext.Usuarios.FirstOrDefault(x => x.Id == id);
+           UserModel? UserSearched = _dbContext.Usuarios.FirstOrDefault(x => x.Id == id);
 
             if (UserSearched == null) 
             {
@@ -36,7 +36,7 @@ namespace Crud_MVC.Repository.DataRepository
 
         public UserModel UpdateUser(UserModel user)
         {
-            UserModel UserSearched = _dbContext.Usuarios.FirstOrDefault(x => x.Id == user.Id);
+            UserModel? UserSearched = _dbContext.Usuarios.FirstOrDefault(x => x.Id == user.Id);
 
             if (UserSearched == null)
             {
@@ -57,7 +57,7 @@ namespace Crud_MVC.Repository.DataRepository
 
         public bool DeleteUser(int id)
         {
-            UserModel UserSearched = _dbContext.Usuarios.FirstOrDefault(x => x.Id == id);
+            UserModel? UserSearched = _dbContext.Usuarios.FirstOrDefault(x => x.Id == id);
 
             if (UserSearched == null)
             {

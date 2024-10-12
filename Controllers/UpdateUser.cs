@@ -13,12 +13,14 @@ namespace Crud_MVC.Controllers
             _userRespository = userRespository;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
-            return View();
+            UserModel searchedUser = _userRespository.GetUser(id);
+            return View(searchedUser);
         }
 
-        public IActionResult UpdateUserInfo(UserModel user)
+        [HttpPost]
+        public IActionResult Index(UserModel user)
         {
             _userRespository.UpdateUser(user);
             return RedirectToAction("index", "home");

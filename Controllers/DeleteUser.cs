@@ -1,4 +1,5 @@
-﻿using Crud_MVC.Repository.Interfaces;
+﻿using Crud_MVC.Models;
+using Crud_MVC.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Crud_MVC.Controllers
@@ -12,9 +13,10 @@ namespace Crud_MVC.Controllers
             _userRepository = userRepository;
         }
 
-        public IActionResult Index()
-        {
-            return View();
+        public IActionResult Index(int id)
+        {   
+            UserModel userSearched = _userRepository.GetUser(id);
+            return View(userSearched);
         }
 
         public IActionResult RemoveUser(int id)
@@ -27,8 +29,7 @@ namespace Crud_MVC.Controllers
             }
             else
             {
-                TempData["Message"] = "Usuário não encontrado";
-                return RedirectToAction("Index", "home");
+                return RedirectToAction("Index", "DeleteUser");
             }
         }
     }

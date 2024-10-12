@@ -1,1 +1,19 @@
-﻿
+﻿@using Crud_MVC.Models
+@model UserModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+    <title>CRUD C#</title>
+</head>
+<body>  
+    <div id="delete-user-confirm">
+        <h3>Deseja apagar o usuário @Model.UserName ?</h3>  
+        <div id="buttons-position-delete">
+            <a asp-controller="DeleteUser" asp-action="RemoveUser" asp-route-id="@Model.Id"><button type="button" id="acept">Sim</button></a>
+            <a asp-controller="Home" asp-action="Index"><button type="button" id="denied">Não</button></a>
+        </div>     
+    </div>
+</body>
+</html>

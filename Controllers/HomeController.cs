@@ -18,6 +18,7 @@ namespace Crud_MVC.Controllers
         {
             List<UserModel> listOfUsers = _userRepository.GetAllUsers();
             return View(listOfUsers);
+            
         }
     }
 }

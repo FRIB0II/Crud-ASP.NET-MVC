@@ -1,1 +1,29 @@
-﻿
+﻿@model UserModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+    <title>CRUD C#</title>
+</head>
+<body>  
+    <div class="add-user-form">
+        <h3>Inserção de usuário</h3>
+        <form asp-controller="AddUser" asp-action="NewUser" method="post" class="form-itens">
+            <label>Nome</label>
+            <input type="text" maxlength="50" placeholder="Insira o nome do usuário." required asp-for="UserName"/>
+
+            <label>Sobrenome</label>
+            <input type="text" maxlength="50" placeholder="Insira o sobrenome do usuário." required asp-for="UserLastName"/>
+
+            <label>Email</label>
+            <input type="email" maxlength="50" placeholder="Insira o email do usuário." required asp-for="UserEmail"/>
+
+            <label>Senha</label>
+            <input type="password" maxlength="50" placeholder="Insira a senha do usuário." required asp-for="UserPassword"/>
+
+            <button type="submit">Cadastrar usuário.</button>
+        </form>
+    </div>
+</body>
+</html>
