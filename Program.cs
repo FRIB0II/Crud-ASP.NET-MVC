@@ -1,6 +1,7 @@
 using Crud_MVC.Data;
 using Crud_MVC.Repository.DataRepository;
 using Crud_MVC.Repository.Interfaces;
+using Crud_MVC.Sevices;
 using Microsoft.EntityFrameworkCore;
 
 namespace Crud_MVC
@@ -21,7 +22,20 @@ namespace Crud_MVC
                     )
             );
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                               .AllowAnyMethod()
+                               .AllowAnyHeader();
+                    });
+            });
+
+            builder.Services.AddSingleton<HttpClient>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IApiService, ApiService>();
 
             var app = builder.Build();
 
@@ -37,6 +51,8 @@ namespace Crud_MVC
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseCors("AllowAllOrigins");
 
             app.UseAuthorization();
 

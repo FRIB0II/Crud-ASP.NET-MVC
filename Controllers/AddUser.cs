@@ -1,5 +1,6 @@
 ﻿using Crud_MVC.Models;
 using Crud_MVC.Repository.Interfaces;
+using Crud_MVC.Sevices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Crud_MVC.Controllers
@@ -8,20 +9,22 @@ namespace Crud_MVC.Controllers
     {
 
         private readonly IUserRepository _userRepository;
+        private readonly IApiService _apiService;
             
-        public AddUser(IUserRepository userRepository)
+        public AddUser(IUserRepository userRepository, IApiService apiService)
         {
             _userRepository = userRepository;
+            _apiService = apiService;
         }
-
+        
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult NewUser(UserModel user)
+        public async Task<ActionResult> NewUser(UserModel user)
         {
-            _userRepository.AddUser(user);
+            await _apiService.POST(user);
             return RedirectToAction("Index", "Home");
         }
     }
